@@ -38,13 +38,12 @@
   --font-family--arial: 'Arial', sans-serif; 
   --color-black: #25282a;                     
   --color-white: #d7e5e2;
-  --color-blue: #71abfe;;
+  --color-blue: #71abfe;
   --color-hover: #ffffff;
-  --viewport--xs: 320px;
-  --viewport--md: 768px;
-  --viewport--lg: 1280px;
   --slider-width: 400px;
   --number: 4;
+  --slide-percentage: calc(100% / var(--number));
+  --button-size: 1.2rem;
 }
 
 * {
@@ -114,6 +113,7 @@ body {
   width: 100% * var(--number);
   height: 100%;
   transition: transform 1s ease;
+  will-change: transform;
 }
 
 .slider_img .slide {
@@ -171,19 +171,13 @@ body {
   top: 0;
   left: 0;
   transform: translate(50%, 50%);
-  width: 1.2rem;
-  height: 1.2rem;
+  width: var(--button-size);
+  height: var(--button-size);
   border-radius: 50%;
   border: 1px solid var(--color-blue);
   background-color: var(--color-blue);
   transition: all 0.5s ease-out;
   box-sizing: border-box;
-}
-
-.slider_buttons label:hover:before {
-  border: 1px solid var(--color-hover);
-  background-color: var(--color-hover);
-  background-color: var(--color-black);
 }
 
 #rb-1:checked ~ .slider_wrap_img .slider_img,
@@ -193,17 +187,17 @@ body {
 
 #rb-2:checked ~ .slider_wrap_img .slider_img,
 #rb-2:checked ~ .slider_wrap_description .slider_description {
-  transform: translateX(-400px);
+  transform: translateX(calc(-1 * var(--slide-percentage)));
 }
 
 #rb-3:checked ~ .slider_wrap_img .slider_img,
 #rb-3:checked ~ .slider_wrap_description .slider_description {
-  transform: translateX(-800px);
+  transform: translateX(calc(-2 * var(--slide-percentage)));
 }
 
 #rb-4:checked ~ .slider_wrap_img .slider_img,
 #rb-4:checked ~ .slider_wrap_description .slider_description {
-  transform: translateX(-1200px);
+  transform: translateX(calc(-3 * var(--slide-percentage)));
 }
 
 #rb-1:checked ~ .slider_buttons .slider_button-1::before,
@@ -214,23 +208,56 @@ body {
   border: 2px solid var(--color-blue);  
 }
 
-#rb-1:checked ~ .slider_buttons .slider_button-1:hover::before,
-#rb-2:checked ~ .slider_buttons .slider_button-2:hover::before,
-#rb-3:checked ~ .slider_buttons .slider_button-3:hover::before,
-#rb-4:checked ~ .slider_buttons .slider_button-4:hover::before {
-  background-color: var(--color-black); 
-  border: 2px solid var(--color-white);
+
+.slider_buttons label::before {
+  background-color: var(--color-blue); /* Голубой фон для неактивной кнопки */
+  border: 2px solid var(--color-blue); /* Голубая окружность */
 }
 
-.slider_buttons label:hover::before {
+/*.slider_buttons label:hover::before {
   background-color: var(--color-white);
   border: 2px solid var(--color-white);
 }
 
 .slider_buttons label:active::before {
-  background-color: var(--color-black);
+  background-color: var(--color-white);
   border: 2px solid var(--color-white); 
+}*/
+
+.slider_buttons label:hover::before,
+.slider_buttons label:active::before {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-white);
 }
+
+/*#rb-1:checked ~ .slider_buttons .slider_button-1:hover::before,
+#rb-2:checked ~ .slider_buttons .slider_button-2:hover::before,
+#rb-3:checked ~ .slider_buttons .slider_button-3:hover::before,
+#rb-4:checked ~ .slider_buttons .slider_button-4:hover::before {
+  background-color: var(--color-black); 
+  border: 2px solid var(--color-hover);
+}
+
+#rb-1:checked ~ .slider_buttons .slider_button-1:active::before,
+#rb-2:checked ~ .slider_buttons .slider_button-2:active::before,
+#rb-3:checked ~ .slider_buttons .slider_button-3:active::before,
+#rb-4:checked ~ .slider_buttons .slider_button-4:active::before {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-hover);  
+}*/
+
+#rb-1:checked ~ .slider_buttons .slider_button-1:hover::before,
+#rb-2:checked ~ .slider_buttons .slider_button-2:hover::before,
+#rb-3:checked ~ .slider_buttons .slider_button-3:hover::before,
+#rb-4:checked ~ .slider_buttons .slider_button-4:hover::before,
+#rb-1:checked ~ .slider_buttons .slider_button-1:active::before,
+#rb-2:checked ~ .slider_buttons .slider_button-2:active::before,
+#rb-3:checked ~ .slider_buttons .slider_button-3:active::before,
+#rb-4:checked ~ .slider_buttons .slider_button-4:active::before {
+  background-color: var(--color-black);
+  border: 2px solid var(--color-hover);
+}
+
 
 .slider_buttons label:focus::before {
   background-color: var(--color-black); 
@@ -243,7 +270,7 @@ body {
   }
   .slider_wrap {
     grid-template-rows: 3fr 40px 40px;
-    grid-template-columns: 1fr;
+    /*grid-template-columns: 1fr;*/
     grid-gap: 1rem;
     grid-template-areas:
       'content'
