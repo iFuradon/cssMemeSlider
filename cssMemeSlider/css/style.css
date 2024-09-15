@@ -1,16 +1,4 @@
-/* --------------------------------------------------------------------------------------------------------------------
-   @font-face позволяет разработчикам загружать пользовательские шрифты с веб-сервера использование разных форматов            
-   (woff2 и woff) обеспечивает поддержку в различных браузерах свойства font-weight и font-style позволяют настроить 
-   внешний вид текста, используя разные варианты одного и того же шрифта font-display: swap улучшает пользовательский 
-   опыт, позволяя сразу отображать текст с помощью резервного шрифта до загрузки основного @font-face гарантирует, 
-   что текст на веб-сайте будет отображаться с пользовательскими шрифтами, независимо от их наличия на клиентском 
-   устройстве 
-*/
-
-/* https://webfonts.pro/base-web-fonts/sans-serif-grotesque/490-arial.html
-*/
   @font-face {
-    /* определяем имя шрифта как 'Arial' для дальнейшего использования в CSS */  
     font-family: 'Arial';
     src: url('../assets/fonts/ArialMT.woff2') format('woff2'),
       url('../assets/fonts/ArialMT.woff') format('woff');
@@ -20,7 +8,6 @@
   }
 
   @font-face {
-    /* определяем имя шрифта как 'Arial' для дальнейшего использования в CSS */
     font-family: 'Arial';
     src: url('../assets/fonts/Arial-ItalicMT.woff2') format('woff2'),
       url('../assets/fonts/Arial-ItalicMT.woff') format('woff');
@@ -30,10 +17,6 @@
     font-display: swap;
   }
 
- /* ------------------------------------------------------------------------------------------------------------------------------
-  определяем CSS-переменные, которые делают стили более удобными для управления и повторного использования, эти переменные 
-  определяются внутри псевдокласса :root, который действует как глобальная область видимости для всего документа
-*/   
 :root {
   --font-family--arial: 'Arial', sans-serif; 
   --color-black: #25282a;                     
@@ -208,43 +191,16 @@ body {
   border: 2px solid var(--color-blue);  
 }
 
-
 .slider_buttons label::before {
-  background-color: var(--color-blue); /* Голубой фон для неактивной кнопки */
-  border: 2px solid var(--color-blue); /* Голубая окружность */
+  background-color: var(--color-blue);
+  border: 2px solid var(--color-blue);
 }
-
-/*.slider_buttons label:hover::before {
-  background-color: var(--color-white);
-  border: 2px solid var(--color-white);
-}
-
-.slider_buttons label:active::before {
-  background-color: var(--color-white);
-  border: 2px solid var(--color-white); 
-}*/
 
 .slider_buttons label:hover::before,
 .slider_buttons label:active::before {
   background-color: var(--color-white);
   border: 2px solid var(--color-white);
 }
-
-/*#rb-1:checked ~ .slider_buttons .slider_button-1:hover::before,
-#rb-2:checked ~ .slider_buttons .slider_button-2:hover::before,
-#rb-3:checked ~ .slider_buttons .slider_button-3:hover::before,
-#rb-4:checked ~ .slider_buttons .slider_button-4:hover::before {
-  background-color: var(--color-black); 
-  border: 2px solid var(--color-hover);
-}
-
-#rb-1:checked ~ .slider_buttons .slider_button-1:active::before,
-#rb-2:checked ~ .slider_buttons .slider_button-2:active::before,
-#rb-3:checked ~ .slider_buttons .slider_button-3:active::before,
-#rb-4:checked ~ .slider_buttons .slider_button-4:active::before {
-  background-color: var(--color-black);
-  border: 2px solid var(--color-hover);  
-}*/
 
 #rb-1:checked ~ .slider_buttons .slider_button-1:hover::before,
 #rb-2:checked ~ .slider_buttons .slider_button-2:hover::before,
@@ -257,7 +213,6 @@ body {
   background-color: var(--color-black);
   border: 2px solid var(--color-hover);
 }
-
 
 .slider_buttons label:focus::before {
   background-color: var(--color-black); 
